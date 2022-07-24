@@ -4,8 +4,14 @@ const cpu = osu.cpu;
 const mem = osu.mem;
 const os = osu.os;
 let platform = "";
-let cpuOverload = 5;
-let alertFrequency = 5;
+let cpuOverload;
+let alertFrequency;
+
+// Get seetings and values
+ipcRenderer.on("settings:get", (e, settings) => {
+  cpuOverload = +settings.cpuOverload;
+  alertFrequency = +settings.alertFrequency;
+});
 
 // Show days, hours minutes and seconds
 const secondstoDhms = (seconds) => {
